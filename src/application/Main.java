@@ -117,12 +117,12 @@ public class Main extends Application {
 			        new ChangeListener<State>() {
 			            public void changed(ObservableValue ov, State oldState, State newState) {
 			                if (newState == State.SUCCEEDED) {
-			                    stage.setTitle(we.getLocation());
+			                    //stage.setTitle(we.getLocation());
 			                }
 			            }
 			        });
 			//we.load("http://javafx.com");
-			we.load("https://github.com/rasitcesur/alcybe/wiki");
+			we.load("https://rasitcesur.github.io/Alcybe/");
 			
 			return stage;
 		} catch(Exception e) {
