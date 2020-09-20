@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.web.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
@@ -19,14 +20,14 @@
          <children>
             <Accordion BorderPane.alignment="CENTER">
               <panes>
-                <TitledPane animated="false" prefHeight="590.0" prefWidth="200.0" text="Simulation Objects">
+                <TitledPane animated="false" prefHeight="575.0" prefWidth="200.0" text="Simulation Objects">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="200.0" />
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="575.0" prefWidth="200.0" />
                   </content>
                 </TitledPane>
                 <TitledPane animated="false" text="Engine Blocks">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="200.0" />
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="575.0" prefWidth="200.0" />
                   </content>
                 </TitledPane>
               </panes>
@@ -43,51 +44,41 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TabPane prefHeight="80.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <TabPane id="topMenu" fx:id="topMenu" prefHeight="103.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
                 <Tab text="File">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0" prefWidth="1280.0" />
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="95.0" prefWidth="1280.0" />
                   </content>
                 </Tab>
                   <Tab text="Engine">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0" prefWidth="1280.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="95.0" prefWidth="1280.0" />
                      </content>
                   </Tab>
                 <Tab text="Model">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0" prefWidth="1280.0" />
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="95.0" prefWidth="1280.0" />
                   </content>
                 </Tab>
-                  <Tab text="Run">
+                  <Tab text="Layout">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0" prefWidth="1280.0" />
-                     </content>
-                  </Tab>
-                  <Tab text="Animation">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0" prefWidth="1280.0" />
-                     </content>
-                  </Tab>
-                  <Tab text="Experiment">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0" prefWidth="1280.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="95.0" prefWidth="1280.0" />
                      </content>
                   </Tab>
                   <Tab text="Data">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0" prefWidth="1280.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="95.0" prefWidth="1280.0" />
                      </content>
                   </Tab>
                   <Tab text="Reporting">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0" prefWidth="1280.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="95.0" prefWidth="1280.0" />
                      </content>
                   </Tab>
                   <Tab text="Support">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0" prefWidth="1280.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="95.0" prefWidth="1280.0" />
                      </content>
                   </Tab>
               </tabs>
@@ -113,15 +104,15 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <SplitPane orientation="VERTICAL" prefHeight="590.0" prefWidth="240.0" BorderPane.alignment="CENTER">
+            <SplitPane orientation="VERTICAL" prefHeight="575.0" prefWidth="240.0" BorderPane.alignment="CENTER">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="240.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="575.0" prefWidth="240.0">
                      <children>
                         <ScrollPane prefHeight="571.0" prefWidth="238.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="240.0">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="575.0" prefWidth="240.0">
                                  <children>
-                                    <TableView layoutX="-14.0" prefHeight="590.0" prefWidth="240.0">
+                                    <TableView layoutX="-14.0" prefHeight="575.0" prefWidth="240.0">
                                       <columns>
                                         <TableColumn prefWidth="160.0" text="Attribute" />
                                         <TableColumn prefWidth="75.0" text="Value" />
@@ -168,9 +159,9 @@
          <children>
             <SplitPane prefHeight="160.0" prefWidth="200.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="840.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="575.0" prefWidth="840.0">
                      <children>
-                        <TabPane prefHeight="590.0" prefWidth="840.0" tabClosingPolicy="ALL_TABS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TabPane prefHeight="575.0" prefWidth="840.0" tabClosingPolicy="ALL_TABS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <tabs>
                             <Tab text="Home">
                               <content>

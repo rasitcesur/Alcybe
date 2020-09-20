@@ -1,8 +1,10 @@
 package application;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import alcybe.tools.ToolKit;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -11,16 +13,24 @@ import javafx.concurrent.Worker.State;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
+import javafx.geometry.Insets;
+import javafx.geometry.NodeOrientation;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
@@ -106,6 +116,47 @@ public class Main extends Application {
 			Scene scene = new Scene(root,1280,720);
 			stage.setScene(scene);
 			stage.getIcons().add(icon);
+			
+			TabPane tp=(TabPane)scene.lookup("#topMenu");
+			
+			HashMap<String, String[]> menuData = 
+					new HashMap<String, String[]>();
+			menuData.put("file", new String[] {"Home", "Open", "Save", "Save As", 
+					"Licensing"});
+			
+			menuData.put("engine", new String[] {"Engine Settings", "New Engine Block", 
+					"Block Priority"});
+			
+			menuData.put("reporting", new String[] {"Tables", "Pivot", "Gantt Chart", 
+					"Bar Chart", "Line Chart", "Pie Chart", "Histogram", "Box Plot"});
+			
+			menuData.put("model", new String[] {"New Model", "Import Model", 
+					"Export Model", "Event Definition", "Play", "Pause", "Stop", 
+					"Run Settings", "Experiment", "Optimization"});
+			
+			menuData.put("layout", new String[] {"Flow Layout", "Grid Layout", 
+					"Vertical Box", "Horizontal Box", "Free Form", "Insert Chart" });
+			
+			menuData.put("data", new String[] {"Tables", "Views", "Variables", 
+					"Data Sources" });
+			
+			menuData.put("support", new String[] {"Help", "Documentation", "Examples"});
+			
+			for(Tab t:tp.getTabs()) {
+				String key=t.getId();
+				if(key==null || key.equals(""))
+					key = t.getText().toLowerCase(Globals.language);
+				String[] data=menuData.get(key);
+					if(data!=null) {
+					String[] uri=new String[data.length];
+					for (int i = 0; i < uri.length; i++)
+						uri[i]="images/menu/"+data[i].replace(' ', '-').
+								toLowerCase(Globals.language)+".png";
+					HBox hb=ToolKit.getHorizontalMenu(data, uri, 32, 32);
+					t.setContent(hb);
+				}
+			}
+			
 			stage.show();
 			
 
