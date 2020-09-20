@@ -22,9 +22,11 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -92,6 +94,14 @@ public class Main extends Application {
 		return null;
 	}
 	
+	private String[] getIconList(String[] data) {
+		String[] uri=new String[data.length];
+		for (int i = 0; i < uri.length; i++)
+			uri[i]="images/menu/"+data[i].replace(' ', '-').
+					toLowerCase(Globals.language)+".png";
+		return uri;
+	}
+	
 	public Stage showMainWindow(Image icon) {
 		
 		try {
@@ -148,14 +158,17 @@ public class Main extends Application {
 					key = t.getText().toLowerCase(Globals.language);
 				String[] data=menuData.get(key);
 					if(data!=null) {
-					String[] uri=new String[data.length];
-					for (int i = 0; i < uri.length; i++)
-						uri[i]="images/menu/"+data[i].replace(' ', '-').
-								toLowerCase(Globals.language)+".png";
+					String[] uri=getIconList(data);
 					HBox hb=ToolKit.getHorizontalMenu(data, uri, 32, 32);
 					t.setContent(hb);
 				}
 			}
+			
+			String[] data = {"Entity", "Store", "Workstation", "Resource"};
+			Accordion t=(Accordion)scene.lookup("#leftMenu");
+			String[] uri=getIconList(data);
+			VBox vb=ToolKit.getVerticalMenu(data, uri, 32, 32);
+			t.getPanes().get(0).setContent(vb);
 			
 			stage.show();
 			

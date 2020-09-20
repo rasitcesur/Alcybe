@@ -18,14 +18,9 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Accordion BorderPane.alignment="CENTER">
+            <Accordion id="leftMenu" fx:id="leftMenu" BorderPane.alignment="CENTER">
               <panes>
                 <TitledPane animated="false" prefHeight="575.0" prefWidth="200.0" text="Simulation Objects">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="575.0" prefWidth="200.0" />
-                  </content>
-                </TitledPane>
-                <TitledPane animated="false" text="Engine Blocks">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="575.0" prefWidth="200.0" />
                   </content>

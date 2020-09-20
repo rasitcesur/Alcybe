@@ -51,12 +51,13 @@ public class ToolKit {
 		for (int i = 0; i < text.length; i++) {
 			HBox hb=new HBox();
 			hb.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
-			hb.setAlignment(Pos.BASELINE_CENTER);
+			hb.setAlignment(Pos.CENTER_LEFT);
 			ImageView iv=new ImageView("file:"+imageURI[i]);
 			iv.setFitWidth(iconWidth);
 			iv.setFitHeight(iconHeight);
 			hb.getChildren().add(iv);
 			Label lbl=new Label(text[i]);
+			lbl.setPadding(new Insets(0,0,0,3));
 			lbl.setWrapText(true);
 			hb.getChildren().add(lbl);
 			hb.autosize();
