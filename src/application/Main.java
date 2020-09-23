@@ -2,7 +2,6 @@ package application;
 
 import java.util.HashMap;
 
-import alcybe.tools.AlcybeHBox;
 import alcybe.tools.ToolKit;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -16,7 +15,6 @@ import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
@@ -24,10 +22,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -100,6 +94,7 @@ public class Main extends Application {
 		return uri;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Stage showMainWindow(Image icon) {
 		
 		try {
@@ -126,129 +121,54 @@ public class Main extends Application {
 			stage.getIcons().add(icon);
 			stage.show();
 			
-			HashMap<String, String[]> menuData = 
-					new HashMap<String, String[]>();
-			menuData.put("file", new String[] {"Home", "Open", "Save", "Save As", 
-					"Licensing"});
-			
-			menuData.put("engine", new String[] {"Engine Settings", "New Engine Block", 
-					"Block Priority"});
-			
-			menuData.put("reporting", new String[] {"Tables", "Pivot", "Gantt Chart", 
-					"Bar Chart", "Line Chart", "Pie Chart", "Histogram", "Box Plot"});
-			
-			menuData.put("model", new String[] {"New Model", "Import Model", 
-					"Export Model", "Event Definition", "Play", "Pause", "Stop", 
-					"Run Settings", "Experiment", "Optimization"});
-			
-			menuData.put("layout", new String[] {"Flow Layout", "Grid Layout", 
-					"Vertical Box", "Horizontal Box", "Free Form", "Insert Chart" });
-			
-			menuData.put("data", new String[] {"Tables", "Views", "Variables", 
-					"Data Sources" });
-			
-			menuData.put("support", new String[] {"Help", "Documentation", "Examples"});
-			
-			EventHandler<MouseEvent> eventHandler2=new EventHandler<MouseEvent>() {
-				
-				@Override 
-				public void handle(MouseEvent e) { 
-					Tab t = new Tab("Layout");
-					final Pane p = new Pane();
-
-			        p.setOnDragOver(new EventHandler <DragEvent>() {
-			            public void handle(DragEvent event) {
-			                /* data is dragged over the target */
-			                System.out.println("onDragOver");
-			                
-			                /* accept it only if it is  not dragged from the same node 
-			                 * and if it has a string data */
-			                if (event.getGestureSource() != p &&
-			                        event.getDragboard().hasString()) {
-			                    /* allow for both copying and moving, whatever user chooses */
-			                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-			                }
-			                
-			                event.consume();
-			            }
-			        });
-
-			        p.setOnDragEntered(new EventHandler <DragEvent>() {
-			            public void handle(DragEvent event) {
-			                /* the drag-and-drop gesture entered the target */
-			                System.out.println("onDragEntered");
-			                /* show to the user that it is an actual gesture target */
-			                if (event.getGestureSource() != p &&
-			                        event.getDragboard().hasString()) {
-			                    //target.setFill(Color.GREEN);
-			                }
-			                
-			                event.consume();
-			            }
-			        });
-
-			        p.setOnDragExited(new EventHandler <DragEvent>() {
-			            public void handle(DragEvent event) {
-			                /* mouse moved away, remove the graphical cues */
-			                //p.setFill(Color.BLACK);
-			                
-			                event.consume();
-			            }
-			        });
-			        
-			        
-			        p.setOnDragDropped(new EventHandler <DragEvent>() {
-			            public void handle(DragEvent event) {
-			                /* data dropped */
-			                System.out.println("onDragDropped");
-			                /* if there is a string data on dragboard, read it and use it */
-			                Dragboard db = event.getDragboard();
-			                boolean success = false;
-			                if (db.hasString()) {
-			                	final AlcybeHBox hb=ToolKit.getVerticalMenuNode(db.getString(),
-			                    		Globals.getMenuIconURI(db.getString()), 24, 24);
-			                	hb.setLayoutX(event.getX());
-			                	hb.setLayoutY(event.getY());
-			                	
-			                	hb.setOnMousePressed(new EventHandler<MouseEvent>() {
-			                		@Override public void handle(MouseEvent mouseEvent) {
-			                		    // record a delta distance for the drag and drop operation.
-			                			hb.setCursor(Cursor.MOVE);
-			                		}
-			                	});
-			                	
-			                	hb.setOnMouseReleased(new EventHandler<MouseEvent>() {
-			                		@Override public void handle(MouseEvent mouseEvent) {
-			                			hb.setCursor(Cursor.DEFAULT);
-			                		}
-			                	});
-			                	hb.setOnMouseDragged(new EventHandler<MouseEvent>() {
-			                		@Override public void handle(MouseEvent mouseEvent) {
-			                			hb.setLayoutX(hb.getLayoutX()+mouseEvent.getX());
-			                			hb.setLayoutY(hb.getLayoutY()+mouseEvent.getY());
-			                		}
-			                	});
-			                	hb.setOnMouseEntered(new EventHandler<MouseEvent>() {
-			                		@Override public void handle(MouseEvent mouseEvent) {
-			                			hb.setCursor(Cursor.HAND);
-			                		}
-			                	});
-			                	
-			                    p.getChildren().add(hb);
-			                    success = true;
-			                }
-			                /* let the source know whether the string was successfully 
-			                 * transferred and used */
-			                event.setDropCompleted(success);
-			                
-			                event.consume();
-			            }
-			        });
+			HashMap<String, MenuContainer> menuData = 
+					new HashMap<String, MenuContainer>();
 					
-					t.setContent(p);
-					Globals.mainWindow.getTabs().add(t);
-				} 
-			};
+			menuData.put("file", new MenuContainer(
+					new String[] {"Home", "Open", "Save", "Save As", "Licensing"},
+					new EventHandler[] {Events.homePage, Events.noPageDialog,
+							Events.noPageDialog,Events.noPageDialog,
+							Events.noPageDialog}));
+			
+			menuData.put("engine", new MenuContainer( new String[] {"Engine Settings", 
+					"New Engine Block", "Block Priority"},
+					new EventHandler[] {Events.noPageDialog,Events.noPageDialog,
+							Events.noPageDialog}));
+			
+			menuData.put("reporting", new MenuContainer(new String[] {"Tables", "Pivot", 
+					"Gantt Chart", "Bar Chart", "Line Chart", "Pie Chart", 
+					"Histogram", "Box Plot"}, 
+					new EventHandler[] {Events.noPageDialog,Events.noPageDialog,
+							Events.noPageDialog,Events.noPageDialog,Events.noPageDialog,
+							Events.noPageDialog,Events.noPageDialog,
+							Events.noPageDialog}));
+			
+			menuData.put("model", new MenuContainer(new String[] {"New Model", 
+					"Import Model", "Export Model", "Event Definition", "Play", "Pause", 
+					"Stop", "Run Settings", "Experiment", "Optimization"}, 
+					new EventHandler[] {Events.noPageDialog,Events.noPageDialog,
+							Events.noPageDialog,Events.noPageDialog,Events.noPageDialog,
+							Events.noPageDialog,Events.noPageDialog,
+							Events.noPageDialog,Events.noPageDialog,
+							Events.noPageDialog}));
+			
+			menuData.put("layout", new MenuContainer(new String[] {"Flow Layout", 
+					"Grid Layout", "Vertical Box", "Horizontal Box", "Free Form", 
+					"Insert Chart" }, 
+					new EventHandler[] {Events.noPageDialog,Events.noPageDialog,
+							Events.noPageDialog,Events.noPageDialog,
+							Events.dragDropSimObjects, Events.noPageDialog}));
+			
+			menuData.put("data", new MenuContainer(new String[] {"Tables", "Views", 
+					"Variables", "Data Sources" }, 
+					new EventHandler[] {Events.noPageDialog,Events.noPageDialog,
+							Events.noPageDialog,Events.noPageDialog}));
+			
+			menuData.put("support", new MenuContainer(new String[] {"Help", 
+					"Documentation", "Examples"}, 
+					new EventHandler[] {Events.noPageDialog,Events.noPageDialog,
+							Events.noPageDialog}));
+			
 			
 			
 			
@@ -257,16 +177,11 @@ public class Main extends Application {
 				String key=t.getId();
 				if(key==null || key.equals(""))
 					key = t.getText().toLowerCase(Globals.language);
-				String[] data=menuData.get(key);
-				if(data!=null) {
-					@SuppressWarnings("unchecked")
-					EventHandler<MouseEvent>[] events=new EventHandler[data.length];
-					
-					for (int i = 0; i < events.length; i++) {
-						events[i]=eventHandler2;
-					}
-					String[] uri=getIconList(data);
-					HBox hb=ToolKit.getHorizontalMenu(data, uri, 32, 32,events);
+				MenuContainer menuContainer=menuData.get(key);
+				if(menuContainer.text!=null) {
+					String[] uri=getIconList(menuContainer.text);
+					HBox hb=ToolKit.getHorizontalMenu(menuContainer.text, uri, 
+							32, 32,menuContainer.events);
 					t.setContent(hb);
 				}
 			}
