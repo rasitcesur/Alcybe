@@ -100,25 +100,6 @@ public class Main extends Application {
 		return uri;
 	}
 	
-	public void initEvents() {
-		EventHandler<MouseEvent> eventHandler=new EventHandler<MouseEvent>() {
-			@Override 
-			   public void handle(MouseEvent e) { 
-					boolean found=false;
-					for(Tab t:Globals.mainWindow.getTabs()) {
-						found=t.equals(Globals.homePage);
-						if(found) break;
-					}
-					if(!found) {
-						Globals.mainWindow.getTabs().add(Globals.homePage);
-					}
-					//System.out.println("Hello World");           
-			   } 
-		};
-		
-		
-	}
-	
 	public Stage showMainWindow(Image icon) {
 		
 		try {
