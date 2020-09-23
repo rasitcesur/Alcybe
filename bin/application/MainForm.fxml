@@ -156,15 +156,15 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="575.0" prefWidth="840.0">
                      <children>
-                        <TabPane prefHeight="575.0" prefWidth="840.0" tabClosingPolicy="ALL_TABS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TabPane id="mainWindow" fx:id="mainWindow" prefHeight="575.0" prefWidth="840.0" tabClosingPolicy="ALL_TABS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <tabs>
                             <Tab text="Home">
                               <content>
-                                 <ScrollPane prefHeight="540" prefWidth="890" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 	<content>
-                                    	<WebView id="homePage" fx:id="homePage" prefHeight="540.0" prefWidth="890.0" />
-                                    </content>
-                                 </ScrollPane>
+                                    <AnchorPane>
+                                       <children>
+                                    	<WebView id="homePage" fx:id="homePage" prefHeight="519.0" prefWidth="812.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
                               </content>
                             </Tab>
                           </tabs>

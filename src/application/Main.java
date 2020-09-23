@@ -1,9 +1,8 @@
 package application;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
 
+import alcybe.tools.AlcybeHBox;
 import alcybe.tools.ToolKit;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -13,22 +12,22 @@ import javafx.concurrent.Worker.State;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Bounds;
-import javafx.geometry.Insets;
-import javafx.geometry.NodeOrientation;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
-import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -97,9 +96,27 @@ public class Main extends Application {
 	private String[] getIconList(String[] data) {
 		String[] uri=new String[data.length];
 		for (int i = 0; i < uri.length; i++)
-			uri[i]="images/menu/"+data[i].replace(' ', '-').
-					toLowerCase(Globals.language)+".png";
+			uri[i]=Globals.getMenuIconURI(data[i]);
 		return uri;
+	}
+	
+	public void initEvents() {
+		EventHandler<MouseEvent> eventHandler=new EventHandler<MouseEvent>() {
+			@Override 
+			   public void handle(MouseEvent e) { 
+					boolean found=false;
+					for(Tab t:Globals.mainWindow.getTabs()) {
+						found=t.equals(Globals.homePage);
+						if(found) break;
+					}
+					if(!found) {
+						Globals.mainWindow.getTabs().add(Globals.homePage);
+					}
+					//System.out.println("Hello World");           
+			   } 
+		};
+		
+		
 	}
 	
 	public Stage showMainWindow(Image icon) {
@@ -126,8 +143,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root,1280,720);
 			stage.setScene(scene);
 			stage.getIcons().add(icon);
-			
-			TabPane tp=(TabPane)scene.lookup("#topMenu");
+			stage.show();
 			
 			HashMap<String, String[]> menuData = 
 					new HashMap<String, String[]>();
@@ -152,34 +168,148 @@ public class Main extends Application {
 			
 			menuData.put("support", new String[] {"Help", "Documentation", "Examples"});
 			
+			EventHandler<MouseEvent> eventHandler2=new EventHandler<MouseEvent>() {
+				
+				@Override 
+				public void handle(MouseEvent e) { 
+					Tab t = new Tab("Layout");
+					final Pane p = new Pane();
+
+			        p.setOnDragOver(new EventHandler <DragEvent>() {
+			            public void handle(DragEvent event) {
+			                /* data is dragged over the target */
+			                System.out.println("onDragOver");
+			                
+			                /* accept it only if it is  not dragged from the same node 
+			                 * and if it has a string data */
+			                if (event.getGestureSource() != p &&
+			                        event.getDragboard().hasString()) {
+			                    /* allow for both copying and moving, whatever user chooses */
+			                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+			                }
+			                
+			                event.consume();
+			            }
+			        });
+
+			        p.setOnDragEntered(new EventHandler <DragEvent>() {
+			            public void handle(DragEvent event) {
+			                /* the drag-and-drop gesture entered the target */
+			                System.out.println("onDragEntered");
+			                /* show to the user that it is an actual gesture target */
+			                if (event.getGestureSource() != p &&
+			                        event.getDragboard().hasString()) {
+			                    //target.setFill(Color.GREEN);
+			                }
+			                
+			                event.consume();
+			            }
+			        });
+
+			        p.setOnDragExited(new EventHandler <DragEvent>() {
+			            public void handle(DragEvent event) {
+			                /* mouse moved away, remove the graphical cues */
+			                //p.setFill(Color.BLACK);
+			                
+			                event.consume();
+			            }
+			        });
+			        
+			        
+			        p.setOnDragDropped(new EventHandler <DragEvent>() {
+			            public void handle(DragEvent event) {
+			                /* data dropped */
+			                System.out.println("onDragDropped");
+			                /* if there is a string data on dragboard, read it and use it */
+			                Dragboard db = event.getDragboard();
+			                boolean success = false;
+			                if (db.hasString()) {
+			                	final AlcybeHBox hb=ToolKit.getVerticalMenuNode(db.getString(),
+			                    		Globals.getMenuIconURI(db.getString()), 24, 24);
+			                	hb.setLayoutX(event.getX());
+			                	hb.setLayoutY(event.getY());
+			                	
+			                	hb.setOnMousePressed(new EventHandler<MouseEvent>() {
+			                		@Override public void handle(MouseEvent mouseEvent) {
+			                		    // record a delta distance for the drag and drop operation.
+			                			hb.setCursor(Cursor.MOVE);
+			                		}
+			                	});
+			                	
+			                	hb.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			                		@Override public void handle(MouseEvent mouseEvent) {
+			                			hb.setCursor(Cursor.DEFAULT);
+			                		}
+			                	});
+			                	hb.setOnMouseDragged(new EventHandler<MouseEvent>() {
+			                		@Override public void handle(MouseEvent mouseEvent) {
+			                			hb.setLayoutX(hb.getLayoutX()+mouseEvent.getX());
+			                			hb.setLayoutY(hb.getLayoutY()+mouseEvent.getY());
+			                		}
+			                	});
+			                	hb.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			                		@Override public void handle(MouseEvent mouseEvent) {
+			                			hb.setCursor(Cursor.HAND);
+			                		}
+			                	});
+			                	
+			                    p.getChildren().add(hb);
+			                    success = true;
+			                }
+			                /* let the source know whether the string was successfully 
+			                 * transferred and used */
+			                event.setDropCompleted(success);
+			                
+			                event.consume();
+			            }
+			        });
+					
+					t.setContent(p);
+					Globals.mainWindow.getTabs().add(t);
+				} 
+			};
+			
+			
+			
+			TabPane tp=(TabPane)scene.lookup("#topMenu");
 			for(Tab t:tp.getTabs()) {
 				String key=t.getId();
 				if(key==null || key.equals(""))
 					key = t.getText().toLowerCase(Globals.language);
 				String[] data=menuData.get(key);
-					if(data!=null) {
+				if(data!=null) {
+					@SuppressWarnings("unchecked")
+					EventHandler<MouseEvent>[] events=new EventHandler[data.length];
+					
+					for (int i = 0; i < events.length; i++) {
+						events[i]=eventHandler2;
+					}
 					String[] uri=getIconList(data);
-					HBox hb=ToolKit.getHorizontalMenu(data, uri, 32, 32);
+					HBox hb=ToolKit.getHorizontalMenu(data, uri, 32, 32,events);
 					t.setContent(hb);
 				}
 			}
 			
-			String[] data = {"Entity", "Store", "Workstation", "Resource"};
+			String[] data = {"Entity Instance Factory", "Source", "Sink", "Entity", 
+					"Store", "Workstation", "Resource"};
 			Accordion t=(Accordion)scene.lookup("#leftMenu");
 			String[] uri=getIconList(data);
-			VBox vb=ToolKit.getVerticalMenu(data, uri, 32, 32);
+			VBox vb=ToolKit.getVerticalMenu(data, uri, 24, 24);
 			t.getPanes().get(0).setContent(vb);
 			
-			stage.show();
+			TabPane mainWindow=(TabPane)scene.lookup("#mainWindow");
+			mainWindow.setTabDragPolicy(TabPane.TabDragPolicy.REORDER);
+			Globals.mainWindow=mainWindow;
+			Globals.homePage=mainWindow.getTabs().get(0);
+			mainWindow.getTabs().add(new Tab("deneme"));
 			
-
-			
-			WebView ww=(WebView) scene.lookup("#homePage");
-			WebEngine we=ww.getEngine();
+			WebView wv=(WebView) scene.lookup("#homePage");
+			WebEngine we=wv.getEngine();
 			we.setJavaScriptEnabled(true);
 			we.getLoadWorker().stateProperty().addListener(
 			        new ChangeListener<State>() {
-			            public void changed(ObservableValue ov, State oldState, State newState) {
+			            public void changed(@SuppressWarnings("rawtypes") 
+			            ObservableValue ov, State oldState, State newState) {
 			                if (newState == State.SUCCEEDED) {
 			                    //stage.setTitle(we.getLocation());
 			                }
