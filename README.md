@@ -2,7 +2,7 @@
 
 <p align="center"style="width:720px;height:340px; ">
 <img 
-    style="margin:-75px 0 0 -100px;width:720px; height:340px;" src="https://github.com/rasitcesur/Alcybe/blob/master/images/alcybe.png"></img>
+    style="margin:50px 0 50px 0;width:720px; height:340px;" src="https://github.com/rasitcesur/Alcybe/blob/master/images/alcybe.png"></img>
 </p>
 # License
 Copyright [2020] [Muhammet Rasit Cesur]
