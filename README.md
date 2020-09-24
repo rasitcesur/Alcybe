@@ -1,4 +1,6 @@
-![alt text](https://github.com/rasitcesur/Alcybe/blob/master/images/alcybe.png "Alcybe")
+<p align="center">
+  <img width="640" height="480" src="https://github.com/rasitcesur/Alcybe/blob/master/images/alcybe.png">
+</p>
 # License
 Copyright [2020] [Muhammet Rasit Cesur]
 
