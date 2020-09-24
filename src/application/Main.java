@@ -199,7 +199,7 @@ public class Main extends Application {
 			mainWindow.setTabDragPolicy(TabPane.TabDragPolicy.REORDER);
 			Globals.mainWindow=mainWindow;
 			Globals.homePage=mainWindow.getTabs().get(0);
-			mainWindow.getTabs().add(new Tab("deneme"));
+			//mainWindow.getTabs().add(new Tab("deneme"));
 			
 			WebView wv=(WebView) scene.lookup("#homePage");
 			WebEngine we=wv.getEngine();

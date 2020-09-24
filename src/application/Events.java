@@ -5,6 +5,7 @@ import alcybe.tools.ToolKit;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
+import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
@@ -121,9 +122,16 @@ public class Events {
 					found=t.equals(Globals.homePage);
 					if(found) break;
 				}
+				
+				SingleSelectionModel<Tab> selectionModel = 
+						Globals.mainWindow.getSelectionModel();
+				//selectionModel.select(1); //select by index starting with 0
+				//selectionModel.clearSelection(); //clear your selection
+				
 				if(!found) {
 					Globals.mainWindow.getTabs().add(Globals.homePage);
 				}
+				selectionModel.select(Globals.homePage); //select by object
 				//System.out.println("Hello World");           
 		   } 
 	}, noPageDialog = new EventHandler<MouseEvent>() {
