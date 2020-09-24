@@ -1,8 +1,8 @@
 
 
-<p align="center"style="width:720px;height:340px;overflow: hidden;">
+<p align="center"style="width:730px;height:340px;overflow: hidden;">
 <img 
-    style="margin:50px 0 50px 0;width:720px; height:340px;overflow: hidden;" src="https://github.com/rasitcesur/Alcybe/blob/master/images/alcybe.png"></img>
+    style="width:730px;height:420px;" src="https://github.com/rasitcesur/Alcybe/blob/master/images/alcybe.png"></img>
 </p>
 # License
 Copyright [2020] [Muhammet Rasit Cesur]
