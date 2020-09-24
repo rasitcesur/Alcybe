@@ -1,4 +1,4 @@
-![alt text](https://github.com/rasitcesur/Alcybe/settings/og-template "Alcybe")
+![alt text](https://github.com/rasitcesur/Alcybe/blob/master/images/alcybe.png "Alcybe")
 # License
 Copyright [2020] [Muhammet Rasit Cesur]
 
