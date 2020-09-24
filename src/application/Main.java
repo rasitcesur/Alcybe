@@ -26,6 +26,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
@@ -70,6 +71,7 @@ public class Main extends Application {
         FlowPane root = new FlowPane();
         root.setAlignment(Pos.CENTER);
         Scene scene = new Scene(root, 730, 430);
+        scene.setFill(Color.TRANSPARENT);
         
 		ImageView imageView = new ImageView(openningImage); 
 	    imageView.setPreserveRatio(true);  

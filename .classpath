@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-10.0.1">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-14.0.1">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
@@ -16,6 +16,55 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="javafx/lib/javafx-swt.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="alcybe_ui/javafx/bin"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="javafx/lib/javafx.base.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="alcybe_ui/javafx/bin"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="javafx/lib/javafx.controls.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="alcybe_ui/javafx/bin"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="javafx/lib/javafx.fxml.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="alcybe_ui/javafx/bin"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="javafx/lib/javafx.graphics.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="alcybe_ui/javafx/bin"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="javafx/lib/javafx.media.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="alcybe_ui/javafx/bin"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="javafx/lib/javafx.swing.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="alcybe_ui/javafx/bin"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="javafx/lib/javafx.web.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="alcybe_ui/javafx/bin"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
+	<classpathentry kind="lib" path="javafx/bin"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
