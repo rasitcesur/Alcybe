@@ -1,5 +1,12 @@
+
+
 <p align="center">
-  <img width="640" height="480" src="https://github.com/rasitcesur/Alcybe/blob/master/images/alcybe.png">
+<div 
+    style="background-image:
+           url('https://github.com/rasitcesur/Alcybe/blob/master/images/alcybe.png'); 
+    width:720px; 
+    height:340px; 
+    background-position:center;">&nbsp;</div>
 </p>
 # License
 Copyright [2020] [Muhammet Rasit Cesur]
