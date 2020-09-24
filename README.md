@@ -1,6 +1,6 @@
 
 
-<p align="center"style="width:730px;height:340px;overflow: hidden;">
+<p align="center"style="width:730px;height:340px;overflow:hidden;">
 <img 
     style="width:730px;height:420px;" src="https://github.com/rasitcesur/Alcybe/blob/master/images/alcybe.png"></img>
 </p>
