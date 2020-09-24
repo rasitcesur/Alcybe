@@ -1,6 +1,6 @@
 
 
-<p align="center">
+<p align="center"style="width:720px;height:340px; ">
 <div 
     style="background-image:
            url('https://github.com/rasitcesur/Alcybe/blob/master/images/alcybe.png'); 
