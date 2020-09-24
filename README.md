@@ -1,7 +1,7 @@
 
 
 <p align="center"style="width:730px;height:340px;overflow:hidden;">
-    ![alt text](https://github.com/rasitcesur/Alcybe/blob/master/images/alcybe.png =730x340)
+    ![alt text](https://github.com/rasitcesur/Alcybe/blob/master/images/alcybe.png "Alcybe")
 </p>
 # License
 Copyright [2020] [Muhammet Rasit Cesur]
