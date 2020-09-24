@@ -1,5 +1,5 @@
 
-![Alcybe](https://github.com/rasitcesur/Alcybe/blob/master/images/alcybe.png)
+![Alcybe](https://github.com/rasitcesur/Alcybe/blob/master/images/alcybe_header.png)
 # License
 Copyright [2020] [Muhammet Rasit Cesur]
 
