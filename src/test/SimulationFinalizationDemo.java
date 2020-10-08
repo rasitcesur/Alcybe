@@ -54,6 +54,7 @@ public class SimulationFinalizationDemo {
 		simEngine.initEvent(new DiscreteEvent[]{new DiscreteEvent(0,null,new TaskNode(src), 
 				new Date(2018, 5, 28, 8, 0),//beginDate, 
 				EventType.ArrivalEvent)}, new Date(2018, 5, 29, 8, 0));//getDate(beginDate,1));
+		simEngine.initDefaultBlocks();
 		long begin=System.nanoTime();
 		simEngine.run();
 		long end=System.nanoTime();

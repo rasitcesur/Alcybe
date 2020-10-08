@@ -22,7 +22,7 @@ import alcybe.simulation.types.Task.ElementSelectionRule;
 
 
 public class Scheduling {
-
+	
 	public static void main(String[] args) throws IOException, URISyntaxException {
 		// TODO Auto-generated method stub
 		
@@ -38,8 +38,8 @@ public class Scheduling {
 			
 			Engine simEngine=new Engine();
 			//Date beginDate=getDate();
-			simEngine.showTrace=false;
-			
+			simEngine.showTrace=true;
+			simEngine.initDefaultBlocks();
 			Date upperBound=new Date(119, 11, 31, 23, 59);
 			simEngine.initEvent(new DiscreteEvent[]{ (DiscreteEvent)simInfo[0] }, 
 					upperBound);//getDate(beginDate,1));

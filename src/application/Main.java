@@ -189,7 +189,7 @@ public class Main extends Application {
 			}
 			
 			String[] data = {"Entity Instance Factory", "Source", "Sink", "Entity", 
-					"Store", "Workstation", "Resource"};
+					"Store", "Workstation", "Resource", "Sensor"};
 			Accordion t=(Accordion)scene.lookup("#leftMenu");
 			String[] uri=getIconList(data);
 			VBox vb=ToolKit.getVerticalMenu(data, uri, 24, 24);

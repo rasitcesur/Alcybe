@@ -68,6 +68,7 @@ public class LineBalancing {
 		simEngine.initEvent(new DiscreteEvent[]{new DiscreteEvent(0,null,new TaskNode(src), 
 				new Date(119, 0, 1, 8, 0),//beginDate, 
 				EventType.ArrivalEvent)}, new Date(119, 11, 31, 8, 0));//getDate(beginDate,1));
+		simEngine.initDefaultBlocks();
 		long begin=System.nanoTime();
 		simEngine.run();
 		long end=System.nanoTime();
