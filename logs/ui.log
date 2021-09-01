@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-08-24T18:46:22.735128Z</date>
+  <millis>1629830782735</millis>
+  <nanos>128000</nanos>
+  <sequence>0</sequence>
+  <logger>application.Globals</logger>
+  <level>INFO</level>
+  <class>application.Main</class>
+  <method>start</method>
+  <thread>14</thread>
+  <message>Startup Window Loading</message>
+</record>
+<record>
+  <date>2021-08-24T18:46:28.801132Z</date>
+  <millis>1629830788801</millis>
+  <nanos>132000</nanos>
+  <sequence>1</sequence>
+  <logger>application.Globals</logger>
+  <level>INFO</level>
+  <class>application.Main$4</class>
+  <method>handle</method>
+  <thread>14</thread>
+  <message>Stage Closing</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-08-24T18:58:35.543783Z</date>
+  <millis>1629831515543</millis>
+  <nanos>783000</nanos>
+  <sequence>0</sequence>
+  <logger>application.Globals</logger>
+  <level>INFO</level>
+  <class>application.Main</class>
+  <method>start</method>
+  <thread>14</thread>
+  <message>Startup Window Loading</message>
+</record>
+<record>
+  <date>2021-08-24T18:58:57.010195Z</date>
+  <millis>1629831537010</millis>
+  <nanos>195000</nanos>
+  <sequence>1</sequence>
+  <logger>application.Globals</logger>
+  <level>INFO</level>
+  <class>application.Main$4</class>
+  <method>handle</method>
+  <thread>14</thread>
+  <message>Stage Closing</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-08-24T18:59:00.593744Z</date>
+  <millis>1629831540593</millis>
+  <nanos>744000</nanos>
+  <sequence>0</sequence>
+  <logger>application.Globals</logger>
+  <level>INFO</level>
+  <class>application.Main</class>
+  <method>start</method>
+  <thread>14</thread>
+  <message>Startup Window Loading</message>
+</record>
+<record>
+  <date>2021-08-24T18:59:19.913461Z</date>
+  <millis>1629831559913</millis>
+  <nanos>461000</nanos>
+  <sequence>1</sequence>
+  <logger>application.Globals</logger>
+  <level>INFO</level>
+  <class>application.Main$4</class>
+  <method>handle</method>
+  <thread>14</thread>
+  <message>Stage Closing</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-08-24T19:05:02.939153Z</date>
+  <millis>1629831902939</millis>
+  <nanos>153000</nanos>
+  <sequence>0</sequence>
+  <logger>application.Globals</logger>
+  <level>INFO</level>
+  <class>application.Main</class>
+  <method>start</method>
+  <thread>14</thread>
+  <message>Startup Window Loading</message>
+</record>
+<record>
+  <date>2021-08-24T19:05:19.249785Z</date>
+  <millis>1629831919249</millis>
+  <nanos>785000</nanos>
+  <sequence>1</sequence>
+  <logger>application.Globals</logger>
+  <level>INFO</level>
+  <class>application.Main$4</class>
+  <method>handle</method>
+  <thread>14</thread>
+  <message>Stage Closing</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-08-24T19:05:40.005980Z</date>
+  <millis>1629831940005</millis>
+  <nanos>980000</nanos>
+  <sequence>0</sequence>
+  <logger>application.Globals</logger>
+  <level>INFO</level>
+  <class>application.Main</class>
+  <method>start</method>
+  <thread>14</thread>
+  <message>Startup Window Loading</message>
+</record>
+<record>
+  <date>2021-08-24T19:05:59.566721Z</date>
+  <millis>1629831959566</millis>
+  <nanos>721000</nanos>
+  <sequence>1</sequence>
+  <logger>application.Globals</logger>
+  <level>INFO</level>
+  <class>application.Main$4</class>
+  <method>handle</method>
+  <thread>14</thread>
+  <message>Stage Closing</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-08-25T05:35:37.337140Z</date>
+  <millis>1629869737337</millis>
+  <nanos>140000</nanos>
+  <sequence>0</sequence>
+  <logger>application.Globals</logger>
+  <level>INFO</level>
+  <class>application.Main</class>
+  <method>start</method>
+  <thread>14</thread>
+  <message>Startup Window Loading</message>
+</record>
+<record>
+  <date>2021-08-25T05:36:06.961399Z</date>
+  <millis>1629869766961</millis>
+  <nanos>399000</nanos>
+  <sequence>1</sequence>
+  <logger>application.Globals</logger>
+  <level>INFO</level>
+  <class>application.Main$4</class>
+  <method>handle</method>
+  <thread>14</thread>
+  <message>Stage Closing</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-08-27T08:39:14.879838Z</date>
+  <millis>1630053554879</millis>
+  <nanos>838000</nanos>
+  <sequence>0</sequence>
+  <logger>application.Globals</logger>
+  <level>INFO</level>
+  <class>application.Main</class>
+  <method>start</method>
+  <thread>14</thread>
+  <message>Startup Window Loading</message>
+</record>
+<record>
+  <date>2021-08-27T08:39:26.632437Z</date>
+  <millis>1630053566632</millis>
+  <nanos>437000</nanos>
+  <sequence>1</sequence>
+  <logger>application.Globals</logger>
+  <level>INFO</level>
+  <class>application.Main$4</class>
+  <method>handle</method>
+  <thread>14</thread>
+  <message>Stage Closing</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-08-31T15:15:54.600853Z</date>
+  <millis>1630422954600</millis>
+  <nanos>853000</nanos>
+  <sequence>0</sequence>
+  <logger>application.Globals</logger>
+  <level>INFO</level>
+  <class>application.Main</class>
+  <method>start</method>
+  <thread>14</thread>
+  <message>Startup Window Loading</message>
+</record>
+<record>
+  <date>2021-08-31T15:16:22.610544Z</date>
+  <millis>1630422982610</millis>
+  <nanos>544000</nanos>
+  <sequence>1</sequence>
+  <logger>application.Globals</logger>
+  <level>INFO</level>
+  <class>application.Main$4</class>
+  <method>handle</method>
+  <thread>14</thread>
+  <message>Stage Closing</message>
+</record>
+</log>
