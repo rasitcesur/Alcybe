@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 
 import controller.Events;
+import controller.forms.MenuContainer;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -20,6 +21,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
+import model.SimObjectAttribute;
 import tools.LocalComboContainer;
 import tools.ToolKit;
 import javafx.scene.Node;
@@ -30,6 +32,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -46,7 +49,14 @@ import javafx.scene.web.WebView;
 public class Main extends Application {
 	
 	
-	//Software startup animation.
+	private static Scene scene = null;
+	
+	/**
+	 * Startup animation.
+	 * @param stage
+	 * @param node
+	 * @param duration
+	 */
 	public void fadeAnimate(final Stage stage, Node node, int duration) {
         FadeTransition ft = new FadeTransition(Duration.millis(duration));
         ft.setNode(node);
@@ -111,14 +121,14 @@ public class Main extends Application {
 		return null;
 	}
 	
-	private String[] getIconList(String[] data) {
-		String[] uri=new String[data.length];
+	private String[] getIconList(String[] idList) {
+		String[] uri=new String[idList.length];
 		for (int i = 0; i < uri.length; i++)
-			uri[i]=Globals.getMenuIconURI(data[i]);
+			uri[i]=ToolKit.getMenuIconURI(idList[i]);
 		return uri;
 	}
 	
-	static URL getResource(String resourcePath) {
+	public static URL getResource(String resourcePath) {
 		return formClass.getResource(resourcePath);
 
 	}
@@ -129,7 +139,6 @@ public class Main extends Application {
 		
 		try {
 			Stage stage = new Stage();
-			Scene scene = null;
 			try {
 				formClass=getClass();
 				Pane root = FXMLLoader.load(formClass.getResource("/MainForm.fxml"));
@@ -158,7 +167,7 @@ public class Main extends Application {
 		            public void handle(KeyEvent event) {
 		            	if(event.getCode()==KeyCode.SHIFT)
 		            		//newTabMode=true if wanted to add same tab again
-		            		Events.newTabMode=false;
+		            		Events.newTabMode=true;
 		           
 		            }
 		        });
@@ -171,7 +180,6 @@ public class Main extends Application {
 		            }
 		        });
 	
-				
 				stage.setScene(scene);
 				stage.getIcons().add(icon);
 				stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -179,9 +187,9 @@ public class Main extends Application {
 					@Override
 					public void handle(WindowEvent event) {
 						Alert alert = new Alert(AlertType.NONE,
-								Globals.getResourceBundle().getString("Alerts.CloseWindowMessage"), ButtonType.NO,
+								Globals.getResourceBundle().getString("Alert.CloseWindowMessage"), ButtonType.NO,
 								ButtonType.YES);
-						alert.setTitle(Globals.getResourceBundle().getString("Alerts.CloseWindowTitle"));
+						alert.setTitle(Globals.getResourceBundle().getString("Alert.CloseWindowTitle"));
 						Optional<ButtonType> result = alert.showAndWait();
 						if (result.get() == ButtonType.YES) 
 							Globals.logger.info("Stage Closing");
@@ -196,51 +204,40 @@ public class Main extends Application {
 			}
 			
 			try{			
-				HashMap<String, MenuContainer> menuData = 
-						new HashMap<String, MenuContainer>();
+				HashMap<String, MenuContainer[]> menuData = new HashMap<>();
 						
-				menuData.put("file", new MenuContainer(
-						new String[] {"Home", "Open", "Save", "SaveAs", "Licensing"},
-						new EventHandler[] {Events.menuItemClick, Events.noPageDialog,
-								Events.noPageDialog,Events.noPageDialog,
-								Events.noPageDialog}));
+				menuData.put("file", new MenuContainer[] {new MenuContainer("MonitoringForm", Events.menuItemClick, false), new MenuContainer("Home", Events.menuItemClick, false),
+						new MenuContainer("Open", Events.noPageDialog, false),new MenuContainer("Save", Events.noPageDialog, false),
+						new MenuContainer("SaveAs", Events.noPageDialog, false),new MenuContainer("Licensing", Events.noPageDialog, false)});
+			
+				menuData.put("engine", new MenuContainer[] { new MenuContainer("EngineSettings", Events.noPageDialog, false),
+						new MenuContainer("NewEngineBlock", Events.noPageDialog, false), new MenuContainer("BlockPriority", Events.noPageDialog, false)});
 				
-				menuData.put("engine", new MenuContainer( new String[] {"EngineSettings", 
-						"NewEngineBlock", "BlockPriority"},
-						new EventHandler[] {Events.noPageDialog,Events.noPageDialog,
-								Events.noPageDialog}));
+				menuData.put("reporting", new MenuContainer[] { new MenuContainer("ReportDesign", Events.noPageDialog, false),
+						new MenuContainer("Pivot", Events.noPageDialog, false), new MenuContainer("GanttChart", Events.noPageDialog, false),
+						new MenuContainer("BarChart", Events.noPageDialog, false), new MenuContainer("LineChart", Events.noPageDialog, false),
+						new MenuContainer("PieChart", Events.noPageDialog, false), new MenuContainer("Histogram", Events.noPageDialog, false),
+						new MenuContainer("BoxPlot", Events.noPageDialog, false)});
+								
+				menuData.put("model", new MenuContainer[] { new MenuContainer("NewModel", Events.noPageDialog, false),
+						new MenuContainer("ImportModel", Events.noPageDialog, false), new MenuContainer("ExportModel", Events.noPageDialog, false),
+						new MenuContainer("EventDefinition", Events.noPageDialog, false), new MenuContainer("Play", Events.noPageDialog, false),
+						new MenuContainer("Pause", Events.noPageDialog, false), new MenuContainer("Stop", Events.noPageDialog, false),
+						new MenuContainer("RunSettings", Events.noPageDialog, false), new MenuContainer("Experiment", Events.noPageDialog, false),
+						new MenuContainer("Optimization", Events.noPageDialog, false)});
 				
-				menuData.put("reporting", new MenuContainer(new String[] {"ReportDesign", "Pivot", 
-						"GanttChart", "BarChart", "LineChart", "PieChart", 
-						"Histogram", "BoxPlot"}, 
-						new EventHandler[] {Events.noPageDialog,Events.noPageDialog,
-								Events.noPageDialog,Events.noPageDialog,Events.noPageDialog,
-								Events.noPageDialog,Events.noPageDialog,
-								Events.noPageDialog}));
+				//menuData.put("digitaltwin", new MenuContainer[] { new MenuContainer("EngineMonitoring", Events.menuItemClick, false)});
 				
-				menuData.put("model", new MenuContainer(new String[] {"NewModel", 
-						"ImportModel", "ExportModel", "EventDefinition", "Play", "Pause", 
-						"Stop", "RunSettings", "Experiment", "Optimization"}, 
-						new EventHandler[] {Events.noPageDialog,Events.noPageDialog,
-								Events.noPageDialog,Events.noPageDialog,Events.noPageDialog,
-								Events.noPageDialog,Events.noPageDialog,
-								Events.noPageDialog,Events.noPageDialog,
-								Events.noPageDialog}));
+				menuData.put("layout", new MenuContainer[] { new MenuContainer("FlowLayout", Events.noPageDialog, false),
+						new MenuContainer("GridLayout", Events.noPageDialog, false), new MenuContainer("FreeForm2D", Events.menuItemClick, false),
+						new MenuContainer("UserDefinedForms", Events.noPageDialog, false)});
 				
-				menuData.put("layout", new MenuContainer(new String[] {"FlowLayout", 
-						"GridLayout", "FreeForm2D", "UserDefinedForms" }, 
-						new EventHandler[] {Events.noPageDialog,Events.noPageDialog,
-								Events.menuItemClick, Events.noPageDialog}));
+				menuData.put("data", new MenuContainer[] { new MenuContainer("Tables", Events.noPageDialog, false),
+						new MenuContainer("Views", Events.noPageDialog, false), new MenuContainer("Variables", Events.menuItemClick, false),
+						new MenuContainer("DataSources", Events.noPageDialog, false)});
 				
-				menuData.put("data", new MenuContainer(new String[] {"Tables", "Views", 
-						"Variables", "DataSources" }, 
-						new EventHandler[] {Events.noPageDialog,Events.noPageDialog,
-								Events.menuItemClick,Events.noPageDialog}));
-				
-				menuData.put("support", new MenuContainer(new String[] {"Help", 
-						"Documentation", "Examples"}, 
-						new EventHandler[] {Events.noPageDialog,Events.noPageDialog,
-								Events.noPageDialog}));
+				menuData.put("support", new MenuContainer[] { new MenuContainer("Help", Events.noPageDialog, false),
+						new MenuContainer("Documentation", Events.noPageDialog, false), new MenuContainer("Examples", Events.noPageDialog, false)});
 				
 				TabPane tp=(TabPane)scene.lookup("#topMenu");
 				
@@ -251,11 +248,9 @@ public class Main extends Application {
 					String key=t.getId();
 					if(key==null || key.equals(""))
 						key = t.getText().toLowerCase(Globals.systemLanguage);
-					MenuContainer menuContainer=menuData.get(key);
-					if(menuContainer.text!=null) {
-						String[] uri=getIconList(menuContainer.text);
-						HBox hb=ToolKit.getHorizontalMenu(menuContainer.text, uri, 
-								32, 32,menuContainer.events);
+					MenuContainer[] menuContainers=menuData.get(key);
+					if(menuContainers!=null) {
+						HBox hb=ToolKit.getHorizontalMenu(menuContainers, 32, 32);
 						t.setContent(hb);
 					}
 				}
@@ -275,6 +270,7 @@ public class Main extends Application {
 						
 					}
 			    });
+				cb.promptTextProperty().bind(Globals.resourceFactory.getStringBinding("Label.Language"));
 			
 			} catch(Exception e) {
 				Globals.logger.log(Level.SEVERE, "Menu Loading", e);
@@ -298,11 +294,15 @@ public class Main extends Application {
 				
 				Tab tab=mainWindow.getTabs().get(0);
 				tab.textProperty().bind(Globals.resourceFactory.getStringBinding("Menu."+tab.getText()));
-				Globals.setTabContent(tab.getText(), tab.getContent());
+				ToolKit.setTabContent(tab.getText(), tab.getContent());
 				//mainWindow.getTabs().add(new Tab("deneme"));
 			} catch(Exception e) {
 				Globals.logger.log(Level.SEVERE, "Main Tab Loading", e);
 			}
+			
+			TableView<SimObjectAttribute> attributeTable=
+					(TableView<SimObjectAttribute>)scene.lookup("#attributeTable");
+			attributeTable.getItems().add(new SimObjectAttribute("kkk","CheckBox"));
 			
 			
 			try {

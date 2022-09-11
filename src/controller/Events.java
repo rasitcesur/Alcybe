@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
 import tools.AlcybeVBox;
+import tools.ToolKit;
 
 public class Events {
 	
@@ -25,33 +26,22 @@ public class Events {
 	private static TabContainer addTab(Object source) {
 		AlcybeVBox menuItem=(AlcybeVBox)source;
 		String tabDef=menuItem.toString();
-		Integer[] tabs=Globals.findTab(tabDef);
-		boolean isActive=tabs.length>0;
+		Integer[] tabs=ToolKit.findTab(tabDef);
+		boolean firstTab=tabs.length==0;
+		boolean newTab = firstTab || newTabMode;
 		Tab t=null;
-		
-		boolean newTab=false;
-		if(isActive) {
-			newTab=newTabMode;
-			if(!newTab)
-				t=Globals.getTab(tabs[0]);
-			isActive=Globals.isTabActive(t);
-		}else 
-			newTab=true;
-		
 		if(newTab) {
 			t=new Tab(tabDef);
 			String[] tag = menuItem.textBinding.split("\\.");
 			t.setId(tag[tag.length-1]);
 			t.textProperty().bind(Globals.resourceFactory.getStringBinding(menuItem.textBinding));
 			try {
-				Globals.setTabContent(t);
-			} catch (Exception e1) {
-				newTab=false;
-			}
-		}
-		
-		if(!isActive)
+				ToolKit.setTabContent(t);
+			} catch (Exception e1) { }
+			newTabMode=false;
 			Globals.mainWindow.getTabs().add(t);
+		} else
+			t=ToolKit.getTab(tabs[0]);
 		
 		/**t.setOnCloseRequest(new EventHandler<Event>()
 		{
@@ -61,7 +51,7 @@ public class Events {
 		    }
 		});*/
 		
-		Globals.selectTab(t);
+		ToolKit.selectTab(t);
 		
 		return new TabContainer(t, newTab);
 	}

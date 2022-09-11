@@ -12,16 +12,20 @@ public class ObservableResourceFactory {
     public ObjectProperty<ResourceBundle> resourcesProperty() {
         return resources ;
     }
+    
     public final ResourceBundle getResource() {
         return resourcesProperty().get();
     }
+    
     public final void setResources(ResourceBundle resources) {
         resourcesProperty().set(resources);
     }
 
     public StringBinding getStringBinding(String key) {
-        return new StringBinding() {
-            { bind(resourcesProperty()); }
+        return new StringBinding() {{ 
+            	bind(resourcesProperty()); 
+            }
+            
             @Override
             public String computeValue() {
                 return getResource().getString(key);

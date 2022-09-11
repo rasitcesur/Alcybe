@@ -1,10 +1,11 @@
-package controller;
+package controller.forms;
 
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import application.Globals;
+import controller.UIController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -74,7 +75,7 @@ public class FreeForm2DController extends UIController implements Initializable{
         	 * Creating the simulation object and add it to the panel.
         	 * */
         	final AlcybeHBox hb=ToolKit.getSimulationObject(objectID+value,
-            		Globals.getMenuIconURI(objectID), 24, 24);
+            		ToolKit.getMenuIconURI(objectID), 24, 24);
         	hb.setLayoutX(event.getX());
         	hb.setLayoutY(event.getY());
         	
